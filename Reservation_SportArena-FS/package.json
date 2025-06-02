@@ -2,6 +2,16 @@
   "name": "reservation-sport-arena-fs",
   "version": "0.0.0",
   "description": "Reservation of sport arena - Full Stack",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Git-X0/Rezervation_SportArena__Full-Stack.git"
+  },
+  "author": "David Bárta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Git-X0/Rezervation_SportArena__Full-Stack/issues"
+  },
+  "homepage": "https://github.com/Git-X0/Rezervation_SportArena__Full-Stack#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,6 +28,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
