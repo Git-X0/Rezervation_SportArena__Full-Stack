@@ -1,0 +1,29 @@
+{
+    "name": "rezervation_sportarena__full-stack",
+    "version": "1.0.0",
+    "description": "Rezervation of sport arena",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.ts",
+        "seed": "node database/seed.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Git-X0/Rezervation_SportArena__Full-Stack.git"
+    },
+    "author": "David Bárta",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Git-X0/Rezervation_SportArena__Full-Stack/issues"
+    },
+    "homepage": "https://github.com/Git-X0/Rezervation_SportArena__Full-Stack#readme",
+    "dependencies": {
+        "express": "^5.1.0"
+    },
+    "devDependencies": {
+        "sqlite3": "^5.1.7",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.8.3"
+    }
+}

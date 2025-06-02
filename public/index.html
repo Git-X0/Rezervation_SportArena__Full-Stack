@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+    </head>
+    <body>
+        <h1>Sport Arena Reservation</h1>
+        <form action="/api/reservations" method="post">
+            <label>Name: <input type="text" name="name" /></label><br />
+            <label>Date begin: <input type="date" name="date_begin" /></label
+            ><br />
+            <label>Hour begin: <input type="time" name="hour_begin" /></label
+            ><br />
+            <label>Date end: <input type="date" name="date_end" /></label><br />
+            <label>Hour end: <input type="time" name="hour_end" /></label><br />
+            <input type="submit" value="Reserve" />
+        </form>
+        <script>
+            fetch("/api/reservations") // replace with your API endpoint
+                .then((response) => response.json())
+                .then((data) => {
+                    const dataDiv = document.getElementById("data");
+                    dataDiv.innerHTML = data
+                        .map((item) => `<p>${item.name}</p>`)
+                        .join("");
+                })
+                .catch((error) => console.error(error));
+        </script>
+    </body>
+</html>
