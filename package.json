@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Git-X0/Rezervation_SportArena__Full-Stack#readme",
   "dependencies": {
     "@prisma/client": "^6.9.0",
+    "body-parser": "^2.2.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
@@ -27,6 +28,7 @@
     "@types/node": "^22.15.30",
     "prisma": "^6.9.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitepress": "^1.6.3"
   }
 }
