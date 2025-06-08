@@ -26,12 +26,15 @@ export class ReservationFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.reservationService.createReservation(this.reservation).subscribe(
-      () => {
+    this.reservationService.createReservation(this.reservation).subscribe({
+      next: () => {
         alert('Rezervace úspěšně vytvořena!');
         this.reservation = {};
       },
-      (error) => alert('Chyba: ' + error.message)
-    );
+      error: (err) => {
+        console.error('Chyba při vytváření rezervace:', err);
+        alert(`Chyba: ${err.message || 'Neznámá chyba'}`);
+      },
+    });
   }
 }

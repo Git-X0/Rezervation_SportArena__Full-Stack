@@ -51,36 +51,40 @@
         </select>
       </div>
     </div>
-
-    <div class="row mt-3">
-      <div class="col-md-6">
-        <label>Sport</label>
-        <select
-          class="form-select"
-          [(ngModel)]="reservation.sportId"
-          name="sportId"
-        >
-          <option *ngFor="let sport of sports" [value]="sport.id">
-            {{ sport.name }}
-          </option>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label>Sportoviště</label>
-        <select
-          class="form-select"
-          [(ngModel)]="reservation.sportLocationId"
-          name="sportLocationId"
-        >
-          <option *ngFor="let location of locations" [value]="location.id">
-            {{ location.name }} ({{ location.location }})
-          </option>
-        </select>
-      </div>
+    <div class="mb-3">
+      <label>Sport</label>
+      <select
+        class="form-select"
+        [(ngModel)]="reservation.sportId"
+        name="sportId"
+        required
+      >
+        <option value="" disabled selected>Vyberte sport</option>
+        <option *ngFor="let sport of sports" [value]="sport.id">
+          {{ sport.name }}
+        </option>
+      </select>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-3">
+    <div class="mb-3">
+      <label>Sportoviště</label>
+      <select
+        class="form-select"
+        [(ngModel)]="reservation.sportLocationId"
+        name="sportLocationId"
+        required
+      >
+        <option value="" disabled selected>Vyberte sportoviště</option>
+        <option *ngFor="let location of locations" [value]="location.id">
+          {{ location.name }} ({{ location.location }})
+        </option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="!reservation.sportId || !reservation.sportLocationId"
+    >
       Vytvořit rezervaci
     </button>
   </form>

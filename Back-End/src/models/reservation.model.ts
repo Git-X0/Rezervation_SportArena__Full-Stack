@@ -15,6 +15,11 @@ class Reservation extends Model {
 
 Reservation.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true, // Přidejte toto
+        },
         firstname: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -29,6 +34,16 @@ Reservation.init(
         },
         time_slot: {
             type: DataTypes.STRING,
+            allowNull: false,
+        },
+        sportId: {
+            // Přidáno validace
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        sportLocationId: {
+            // Přidáno validace
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     },

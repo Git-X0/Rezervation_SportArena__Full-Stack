@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,11 @@ export class ReservationService {
   constructor(private http: HttpClient) {}
 
   createReservation(reservation: any): Observable<any> {
+    // Validace povinných polí
+    if (!reservation.sportId || !reservation.sportLocationId) {
+      return throwError(() => new Error('Vyberte sport a sportoviště'));
+    }
+
     return this.http.post(this.apiUrl, reservation);
   }
 

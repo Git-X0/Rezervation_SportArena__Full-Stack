@@ -1,58 +1,70 @@
+import { Request, Response } from "express";
 import express from "express";
 import SportLocation from "../models/sportLocation.model";
 
+const app = express();
 const router = express.Router();
 
+app.use((err: Error, req: Request, res: Response, next: Function) => {
+    console.error("❌ Unhandled error:", err);
+    res.status(500).send("Internal Server Error");
+});
+
 // CREATE sportoviště
-router.post("/", async (req, res) => {
-    res.json();
+router.post("/", async (req: Request, res: Response) => {
     try {
         const location = await SportLocation.create(req.body);
-        res.status(201).json(location);
+        return res.status(201).json(location); // Přidáno RETURN
     } catch (error) {
-        res.status(500).json({ error: "Chyba při vytváření sportoviště" });
+        return res
+            .status(500)
+            .json({ error: "Chyba při vytváření sportoviště" }); // Přidáno RETURN
     }
 });
 
 // READ všech sportovišť
-router.get("/", async (req, res) => {
-    res.json();
+router.get("/", async (req: Request, res: Response) => {
     try {
         const locations = await SportLocation.findAll();
-        res.json(locations);
+        return res.json(locations); // Přidáno RETURN
     } catch (error) {
-        res.status(500).json({ error: "Chyba při načítání sportovišť" });
+        return res.status(500).json({ error: "Chyba při načítání sportovišť" }); // Přidáno RETURN
     }
 });
 
 // UPDATE sportoviště
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req: Request, res: Response) => {
     try {
         const [updated] = await SportLocation.update(req.body, {
             where: { id: req.params.id },
         });
 
-        if (updated === 0) {
-            return res.status(404).json({ error: "Sportoviště nenalezeno" });
+        if (!updated) {
+            return res.status(404).json({ error: "Sportoviště nenalezeno" }); // RETURN + status
         }
 
-        res.json({ message: "Sportoviště aktualizováno" });
+        return res.json({ message: "Sportoviště aktualizováno" }); // Přidáno RETURN
     } catch (error) {
-        res.status(500).json({ error: "Chyba při aktualizaci sportoviště" });
+        return res
+            .status(500)
+            .json({ error: "Chyba při aktualizaci sportoviště" }); // Přidáno RETURN
     }
 });
 
 // DELETE sportoviště
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req: Request, res: Response) => {
     try {
         const deleted = await SportLocation.destroy({
             where: { id: req.params.id },
         });
-        if (!deleted)
-            return res.status(404).json({ error: "Sportoviště nenalezeno" });
-        res.json({ message: "Sportoviště smazáno" });
+
+        if (!deleted) {
+            return res.status(404).json({ error: "Sportoviště nenalezeno" }); // RETURN + status
+        }
+
+        return res.json({ message: "Sportoviště smazáno" }); // Přidáno RETURN
     } catch (error) {
-        res.status(500).json({ error: "Chyba při mazání sportoviště" });
+        return res.status(500).json({ error: "Chyba při mazání sportoviště" }); // Přidáno RETURN
     }
 });
 

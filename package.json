@@ -1,15 +1,20 @@
 {
+    "name": "fullstack-app",
+    "version": "1.0.0",
+    "description": "A full-stack application with Angular Frontend and Node.js backend",
     "scripts": {
-        "start": "concurrently \"npm run seed\"\"npm run backend\" \"npm run frontend\"",
+        "start": "concurrently \"npm run seed\" \"npm run backend\" \"npm run frontend\"",
         "backend": "cd Back-End && npm run dev",
         "frontend": "cd Front-End && ng serve",
         "seed": "cd Back-End && npm run seed",
         "build:docs": "cd docs && npm run build"
     },
     "devDependencies": {
-        "concurrently": "^8.2.2"
+        "concurrently": "^8.0.1"
     },
     "dependencies": {
         "@angular/platform-browser-dynamic": "^20.0.2"
-    }
+    },
+    "license": "MIT",
+    "author": "Barta David"
 }

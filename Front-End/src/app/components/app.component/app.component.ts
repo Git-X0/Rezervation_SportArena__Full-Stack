@@ -8,12 +8,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    ReservationFormComponent,
-    ReservationListComponent,
-  ],
+  imports: [CommonModule, ReservationFormComponent, ReservationListComponent],
   template: `
     <div class="container mt-4">
       <h1>{{ title }}</h1>
