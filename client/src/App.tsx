@@ -27,7 +27,7 @@ function App() {
         fetchReservations();
     };
 
-    return (
+    return `(
         <div>
             <h1>Rezervace Sportovišť</h1>
 
@@ -64,7 +64,7 @@ function App() {
                     </li>
                 ))}
             </ul>
-        </div>
+        </div>`
     );
 }
 
