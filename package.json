@@ -4,9 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-            "start": "ts-node server.ts",
-            "client": "cd client && npm start",
-            "docs": "vitepress dev docs"
+        "start": "node server.js",
+        "client": "cd client && npm start",
+        "docs": "vitepress dev docs"
     },
     "repository": {
         "type": "git",
