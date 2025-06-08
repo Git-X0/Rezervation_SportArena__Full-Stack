@@ -1,33 +1,16 @@
-# David Bárta
-
 # Rezervační systém sportoviště
 
-## Bodované bonusy
+## Bonusové balíčky
 
--   Point Pack 2: VitePress dokumentace
--   Point Pack 3: Angular, TypeScript, Sequelize, TailwindCSS
+-   Point Pack 2: Dokumentace (VitePress)
+-   Point Pack 3: Angular + TypeScript + Sequelize
 
-## Návod na spuštění
+### 🚀 **SPUŠTĚNÍ PROJEKTU**
 
-# Backend
+1. Instalace závislostí:
 
-cd backend
+```bash
 npm install
-npm run build # Transpilace TypeScriptu
-npm run start # Spustí server na http://localhost:3000
-
-# Frontend
-
-cd ../frontend
-npm install
-npm start # Spustí Angular na http://localhost:4200
-
-# Dokumentace (VitePress)
-
-cd ../docs
-npm install
-npm run docs:dev # Spustí dokumentaci na http://localhost:5173
-
-```
-
+cd Back-End && npm install
+cd ../Front-End && npm install
 ```

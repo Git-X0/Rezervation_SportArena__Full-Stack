@@ -1,0 +1,39 @@
+<div class="mt-5">
+  <h2>Seznam rezervací</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Jméno</th>
+        <th>Datum</th>
+        <th>Čas</th>
+        <th>Sport</th>
+        <th>Sportoviště</th>
+        <th>Akce</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let res of reservations">
+        <td>{{ res.firstname }} {{ res.lastname }}</td>
+        <td>{{ res.date | date : "d.M.yyyy" }}</td>
+        <td>{{ res.time_slot }}</td>
+        <td>{{ res.Sport?.name }}</td>
+        <td>
+          {{ res.SportLocation?.name }} ({{ res.SportLocation?.location }})
+        </td>
+        <td>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteReservation(res.id)"
+          >
+            Smazat
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="reservations.length === 0" class="alert alert-info">
+    Žádné rezervace nenalezeny
+  </div>
+</div>

@@ -1,25 +1,22 @@
-# Backend
-
+# Back-End
 Back-End/node_modules
 Back-End/.env
-Back-End/*.db
-Back-End/*.log
-Back-End/dist/
-Back-End/build/
-Back-End/package-lock.json
+Back-End/database.sqlite
 
-# Frontend (Angular)
-Front-End/node_modules/
-Front-End/dist/
-Front-End/.angular/cache
-Front-End/package-lock.json
+# Front-End
+Front-End/node_modules
+Front-End/dist
+Front-End/.vscode/
 
-# Documentation (VitePress)
-docs/node_modules/
-docs/.vitepress/cache
+# Dokumentace
 docs/.vitepress/dist
+docs/.vitepress/cache
 
-# General
+# Obecné
+node_modules
+dist
 .DS_Store
 .idea
-*.tmp
+*.log
+**/package-lock.json
+.vscode/**

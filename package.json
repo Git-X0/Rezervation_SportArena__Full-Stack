@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "start": "concurrently \"npm run seed\"\"npm run backend\" \"npm run frontend\"",
+        "backend": "cd Back-End && npm run dev",
+        "frontend": "cd Front-End && ng serve",
+        "seed": "cd Back-End && npm run seed",
+        "build:docs": "cd docs && npm run build"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "dependencies": {
+        "@angular/platform-browser-dynamic": "^20.0.2"
+    }
+}
