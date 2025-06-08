@@ -1,20 +1,32 @@
 {
-    "name": "fullstack-app",
-    "version": "1.0.0",
-    "description": "A full-stack application with Angular Frontend and Node.js backend",
-    "scripts": {
-        "start": "concurrently \"npm run seed\" \"npm run backend\" \"npm run frontend\"",
-        "backend": "cd Back-End && npm run dev",
-        "frontend": "cd Front-End && ng serve",
-        "seed": "cd Back-End && npm run seed",
-        "build:docs": "cd docs && npm run build"
-    },
-    "devDependencies": {
-        "concurrently": "^8.0.1"
-    },
-    "dependencies": {
-        "@angular/platform-browser-dynamic": "^20.0.2"
-    },
-    "license": "MIT",
-    "author": "Barta David"
+  "name": "rezervation_sportarena__full-stack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Git-X0/Rezervation_SportArena__Full-Stack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Git-X0/Rezervation_SportArena__Full-Stack/issues"
+  },
+  "homepage": "https://github.com/Git-X0/Rezervation_SportArena__Full-Stack#readme",
+  "dependencies": {
+    "@prisma/client": "^6.9.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.30",
+    "prisma": "^6.9.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
 }
