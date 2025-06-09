@@ -6,7 +6,8 @@
     "scripts": {
         "start": "node server.js",
         "client": "cd client && npm start",
-        "docs": "vitepress dev docs"
+        "docs": "vitepress dev docs",
+        "prisma": "npx prisma generate && npx prisma migrate dev --name init"
     },
     "repository": {
         "type": "git",

@@ -4,12 +4,12 @@ const bodyParser = require("body-parser");
 
 const prisma = new PrismaClient();
 const app = express();
-const port = 3000;
+const port = `3000/api`;
 
 app.use(bodyParser.json());
 
 // GET /api/reservations
-app.get("/api/reservations", async (req, res) => {
+app.get("/reservations", async (req, res) => {
     try {
         const reservations = await prisma.reservation.findMany({
             include: { sportPlace: true },
@@ -22,7 +22,7 @@ app.get("/api/reservations", async (req, res) => {
 });
 
 // GET /api/reservations/:id
-app.get("/api/reservations/:id", async (req, res) => {
+app.get("/reservations/:id", async (req, res) => {
     const { id } = req.params;
     const idNum = Number(id);
 
@@ -47,9 +47,8 @@ app.get("/api/reservations/:id", async (req, res) => {
     }
 });
 // POST /api/reservations
-app.post("/api/reservations", async (req, res) => {
+app.post("/reservations", async (req, res) => {
     const { sportPlaceId, date, time, duration } = req.body;
-
     if (!sportPlaceId || !date || !time || !duration) {
         return res.status(400).send("Missing required fields");
     }
@@ -70,7 +69,7 @@ app.post("/api/reservations", async (req, res) => {
     }
 });
 // PUT /api/reservations/:id
-app.put("/api/reservations/:id", async (req, res) => {
+app.put("/reservations/:id", async (req, res) => {
     const { id } = req.params;
     const { sportPlaceId, date, time, duration } = req.body;
 
@@ -96,7 +95,7 @@ app.put("/api/reservations/:id", async (req, res) => {
 });
 
 // DELETE /api/reservations/:id
-app.delete("/api/reservations/:id", async (req, res) => {
+app.delete("/reservations/:id", async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -111,7 +110,7 @@ app.delete("/api/reservations/:id", async (req, res) => {
 });
 
 // GET /api/sportPlaces
-app.get("/api/sportPlaces", async (req, res) => {
+app.get("/sportPlaces", async (req, res) => {
     try {
         const sportPlaces = await prisma.sportPlace.findMany();
         res.json(sportPlaces);
@@ -121,7 +120,7 @@ app.get("/api/sportPlaces", async (req, res) => {
     }
 });
 // GET /api/sportPlaces/:id
-app.get("/api/sportPlaces/:id", async (req, res) => {
+app.get("/sportPlaces/:id", async (req, res) => {
     const { id } = req.params;
     const idNum = Number(id);
 
@@ -146,7 +145,7 @@ app.get("/api/sportPlaces/:id", async (req, res) => {
 });
 
 // POST /api/sportPlaces
-app.post("/api/sportPlaces", async (req, res) => {
+app.post("/sportPlaces", async (req, res) => {
     const { name, location } = req.body;
 
     if (!name || !location) {
@@ -170,3 +169,5 @@ app.post("/api/sportPlaces", async (req, res) => {
 app.listen(port, () => {
     console.log(`Server běží na http://localhost:${port}`);
 });
+
+export default app;

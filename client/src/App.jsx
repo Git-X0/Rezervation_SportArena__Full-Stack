@@ -15,16 +15,25 @@ function App() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch("http://localhost:3000/api/reservations", {
+        if (!form.date || !form.email) {
+            alert("Vyplňte prosím všechna pole.");
+            return;
+        }
+
+        const response = await fetch("http://localhost:3000/api/reservations", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                date: form.date,
-                userEmail: form.email,
-                placeId: Number(form.placeId),
-            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(form),
         });
-        fetchReservations();
+
+        if (response.ok) {
+            setForm({ date: "", email: "", placeId: 1 });
+            fetchReservations();
+        } else {
+            alert("Rezervace se nezdařila.");
+        }
     };
 
     return (
@@ -54,7 +63,9 @@ function App() {
                     <option value="1">Tenisový kurt 1</option>
                     <option value="2">Fotbalové hřiště</option>
                 </select>
-                <button type="submit">Rezervovat</button>
+                <button type="submit" onClick={handleSubmit}>
+                    Rezervovat
+                </button>
             </form>
 
             <ul>
