@@ -1,6 +1,11 @@
-/node_modules/*
+# Ignore node_modules directory
+client/src/node_modules/
+dist/
+
 
 # Keep environment variables out of version control
 .env
 
+node_modules
 /generated/prisma
+package-lock.json

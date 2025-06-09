@@ -46,8 +46,126 @@ app.get("/api/reservations/:id", async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+// POST /api/reservations
+app.post("/api/reservations", async (req, res) => {
+    const { sportPlaceId, date, time, duration } = req.body;
 
-// ... (vložte zde další endpointy ze server.ts)
+    if (!sportPlaceId || !date || !time || !duration) {
+        return res.status(400).send("Missing required fields");
+    }
+
+    try {
+        const newReservation = await prisma.reservation.create({
+            data: {
+                sportPlaceId,
+                date,
+                time,
+                duration,
+            },
+        });
+        res.status(201).json(newReservation);
+    } catch (error) {
+        console.error("POST /api/reservations error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+// PUT /api/reservations/:id
+app.put("/api/reservations/:id", async (req, res) => {
+    const { id } = req.params;
+    const { sportPlaceId, date, time, duration } = req.body;
+
+    if (!sportPlaceId || !date || !time || !duration) {
+        return res.status(400).send("Missing required fields");
+    }
+
+    try {
+        const updatedReservation = await prisma.reservation.update({
+            where: { id: Number(id) },
+            data: {
+                sportPlaceId,
+                date,
+                time,
+                duration,
+            },
+        });
+        res.json(updatedReservation);
+    } catch (error) {
+        console.error(`PUT /api/reservations/${id} error:`, error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// DELETE /api/reservations/:id
+app.delete("/api/reservations/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        await prisma.reservation.delete({
+            where: { id: Number(id) },
+        });
+        res.status(204).send();
+    } catch (error) {
+        console.error(`DELETE /api/reservations/${id} error:`, error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// GET /api/sportPlaces
+app.get("/api/sportPlaces", async (req, res) => {
+    try {
+        const sportPlaces = await prisma.sportPlace.findMany();
+        res.json(sportPlaces);
+    } catch (error) {
+        console.error("GET /api/sportPlaces error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+// GET /api/sportPlaces/:id
+app.get("/api/sportPlaces/:id", async (req, res) => {
+    const { id } = req.params;
+    const idNum = Number(id);
+
+    if (isNaN(idNum)) {
+        return res.status(400).send("Invalid ID format");
+    }
+
+    try {
+        const sportPlace = await prisma.sportPlace.findUnique({
+            where: { id: idNum },
+        });
+
+        if (!sportPlace) {
+            return res.status(404).send("Sport Place not found");
+        }
+
+        res.json(sportPlace);
+    } catch (error) {
+        console.error(`GET /api/sportPlaces/${id} error:`, error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// POST /api/sportPlaces
+app.post("/api/sportPlaces", async (req, res) => {
+    const { name, location } = req.body;
+
+    if (!name || !location) {
+        return res.status(400).send("Missing required fields");
+    }
+
+    try {
+        const newSportPlace = await prisma.sportPlace.create({
+            data: {
+                name,
+                location,
+            },
+        });
+        res.status(201).json(newSportPlace);
+    } catch (error) {
+        console.error("POST /api/sportPlaces error:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server běží na http://localhost:${port}`);
